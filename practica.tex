@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage[official]{eurosym}
+\usepackage[utf8x]{inputenc} 
+\graphicspath{ {images/} }
+\begin{document}
+\begin{figure}[t]
+\title{Taller 1}
+\includegraphics[{width=3cm, height=4cm}]{logouv.jpg}
+\end{figure}
+\title{Universidad del Valle \\ 
+		Escuela de Ingeniería de Sistemas y Computación \\
+		Programación por Restricciones \\
+		Desarrollo: Taller Modelamiento e Implementación CSPs}
+\author{Juan Marcos Caicedo Mej\'ia (1730504-3743)}
+\date{Viernes 6 de Diciembre de 2019}
+\maketitle
+
+\newpage
+
+\begin{center}
+\large
+\textbf{PARTE 1 (CSPs)}
+\end{center}
+
+\begin{flushleft}
+\textbf{3. Secuencia Mágica}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item $n$: La variable $n$ (ingresada por el usuario mediante el IDE o proveída por un archivo de datos .dzn), representa la longitud de la secuencia mágica.
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item $dominio = 0..n-1$: El dominio $dominio$ caracteriza dos cosas: el tamaño de la secuencia mágica (el tamaño del arreglo que la representa) y los posibles valores que toman los números dentro de la secuencia mágica.
+\end{itemize}
+\item Restricciones:
+\begin{itemize}
+\item Llamemos $ocurre$ a un predicado que recibe una lista $l$ y un número $x$, así, $ocurre(l,x)$ arroja el número de ocurrencias del número $x$ en la lista $l$. Otro predicado puede ser $posicion$ que dada una lista $l$ y un número $x$, retorna la posición del número $x$ en la lista $l$ (indexando desde 0). La restricción principal del problema consiste en que la secuencia mágica se caracteriza porque el número $i$ ocurre exactamente $x_{i}$ veces en la secuencia. Así, la restricción podría modelarse:
+\begin{equation*}
+\forall x \in l, ocurre(l, posicion(l, x)) = x
+\end{equation*}
+Esto quiere decir que el número de la posición de $x$ en la lista $l$ debe ocurrir $x$ veces en la lista $l$.
+\item Una restricción redundante adicional, dicta que la suma de todos los números en la secuencia debe sumar el número $n$ (longitud de la secuencia):
+\begin{equation*}
+\sum_{i=0}^{n-1} x_{i} = n
+\end{equation*}
+Donde $x_{i}$ es el i-ésimo elemento de la secuencia mágica.
+\end{itemize}
+\end{itemize}
+
+
+
+\end{document}
