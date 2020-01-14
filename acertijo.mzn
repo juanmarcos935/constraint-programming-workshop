@@ -1,31 +1,26 @@
-enum NOMBRES = {Juan, Oscar, Dario};
 enum APELLIDOS = {Gonzalez, Garcia, Lopez};
 enum MUSICA = {Clasica, Pop, Jazz};
 
-var NOMBRES: nombre_amigo1;
-var NOMBRES: nombre_amigo2;
-var NOMBRES: nombre_amigo3;
+var APELLIDOS: apellido_juan;
+var APELLIDOS: apellido_oscar;
+var APELLIDOS: apellido_dario;
 
-var APELLIDOS: apellido_amigo1;
-var APELLIDOS: apellido_amigo2;
-var APELLIDOS: apellido_amigo3;
+var MUSICA: musica_juan;
+var MUSICA: musica_oscar;
+var MUSICA: musica_dario;
 
-var MUSICA: musica_amigo1;
-var MUSICA: musica_amigo2;
-var MUSICA: musica_amigo3;
+var 24..26: edad_juan;
+var 24..26: edad_oscar;
+var 24..26: edad_dario;
 
-var 24..26: edad_amigo1;
-var 24..26: edad_amigo2;
-var 24..26: edad_amigo3;
+constraint edad_juan > edad_oscar \/ edad_juan > edad_dario; % Juan es mayor que González, González es una persona distinta a Juan, pero existe la posibilidad de que quien se apellide González sea Oscar o Dario.
+constraint musica_oscar = Clasica \/ musica_dario = Clasica; % Entonces nos deja la posibilidad de que a Oscar le guste la musica clásica o a Dario le guste la música Clásica.
 
-constraint nombre_amigo1 = Juan; %Arbitrariamente asumo que el Amigo numero 1 es Juan
-constraint apellido_amigo2 = Gonzalez; % Juan al ser más viejo que González implica que son distintas personas
-constraint edad_amigo1 > edad_amigo2; % Restricción de que Juan es más viejo que González
-constraint musica_amigo2 = Clasica; % Restricción de que a Gonzalez le gusta la música Clásica
 
-% A quien le gusta la música pop no puede apellidarse García, ni tampoco Gonzalez (no puede ser Amigo 2), pues a Gonzalez ya le gusta la música clásica. Solo deja una opción para el fan de la música pop: que se apellide López (pudiendo ser Amigo 1 o Amigo 3). Nota: el fan del pop no tiene 24 años.
 
-% Oscar no es Juan debido a que no pueden colisionar los nombres (Oscar no es Amigo 1), y tampoco es Lopez.
+constraint apellido_oscar != Lopez; % Oscar no se apellida Lopez
+constraint edad_oscar = 25; % Oscar tiene 25
+constraint musica_dario != Jazz; % la musica favorita de Dario no es el Jazz
 
 
 solve satisfy;
