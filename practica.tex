@@ -30,17 +30,55 @@
 \end{center}
 
 \begin{flushleft}
+\textbf{1. Sudoku}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item \begin{verbatim}
+subcuadricula
+\end{verbatim} Representa la dimensión de cada subcuadricula. En un Sudoku común y corriente esto tiene un valor de 3, sin embargo, se deja como una variable pues podría haber cuadrículas de 4 dimensiones, 5, etc. 
+\item \begin{verbatim}
+cuadricula
+\end{verbatim} Representa la dimensión de toda la cuadricula grande (la que contiene las subcuadriculas). Al igual que la variable anterior, en un Sudoku común esta variable tiene el valor de 9, sin embargo, al cambiar el valor de las subcuadrículas eventualmente también cambiaría el valor de la dimensión de la cuadrícula grande. 
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item \begin{verbatim}
+dimension_subcuadricula
+\end{verbatim}
+Este dominio es útil para poder acceder a todas las celdas de una subcuadrícula
+\item \begin{verbatim}
+dimension_cuadricula
+\end{verbatim}
+Este dominio es útil para poder acceder a todas las celdas de la cuadrícula grande
+\end{itemize}
+\item Restricciones:
+\begin{itemize}
+\item e
+\item a
+\item f
+\end{itemize}
+\end{itemize}
+
+
+\begin{flushleft}
 \textbf{3. Secuencia Mágica}
 \end{flushleft}
 
 \begin{itemize}
 \item Variables:
 \begin{itemize}
-\item $n$: La variable $n$ (ingresada por el usuario mediante el IDE o proveída por un archivo de datos .dzn), representa la longitud de la secuencia mágica.
+\item \begin{verbatim}
+n
+\end{verbatim} La variable (ingresada por el usuario mediante el IDE o proveída por un archivo de datos .dzn), representa la longitud de la secuencia mágica.
 \end{itemize}
 \item Dominios:
 \begin{itemize}
-\item $dominio = 0..n-1$: El dominio $dominio$ caracteriza dos cosas: el tamaño de la secuencia mágica (el tamaño del arreglo que la representa) y los posibles valores que toman los números dentro de la secuencia mágica.
+\item \begin{verbatim}
+dominio = 0..n-1
+\end{verbatim} Este dominio caracteriza dos cosas: el tamaño de la secuencia mágica (el tamaño del arreglo que la representa) y los posibles valores que toman los números dentro de la secuencia mágica.
 \end{itemize}
 \item Restricciones:
 \begin{itemize}
@@ -52,6 +90,11 @@ Esto quiere decir que el número de la posición de $x$ en la lista $l$ debe ocu
 \item Una restricción redundante adicional, dicta que la suma de todos los números en la secuencia debe sumar el número $n$ (longitud de la secuencia):
 \begin{equation*}
 \sum_{i=0}^{n-1} x_{i} = n
+\end{equation*}
+Donde $x_{i}$ es el i-ésimo elemento de la secuencia mágica.
+\item Otra restricción adicional, dice que la suma de cada elemento de la secuencia multiplicada por $i-1$ debe ser igual a 0:
+\begin{equation*}
+\sum_{i=0}^{n-1} x_{i}*(i-1) = 0
 \end{equation*}
 Donde $x_{i}$ es el i-ésimo elemento de la secuencia mágica.
 \end{itemize}
