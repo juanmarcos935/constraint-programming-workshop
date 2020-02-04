@@ -418,6 +418,20 @@ $\rightarrow$ Restricciones:
 \begin{itemize}
 \item $\neg apellido(Juan, Gonzalez)$ \\ (Juan no se apellida González, esto se infiere al decir que Juan es mayor que González)
 \item $\neg apellido(Oscar, Lopez)$ \\ (Oscar no se apellida López)
+\item $\forall x \mid x \in APELLIDOS$ \\ $apellido(Juan,x_{i}) \land apellido(Oscar,x_{i+1}) \land apellido(Dario,x_{i+2}) \Rightarrow x_{i} \neq x_{i+1} \neq x_{i+2}$ \\ (Todos se deben apellidar distinto)
+\item $\neg musica(Dario, Jazz)$ \\ (A Dario no le gusta el Jazz)
+\item $\exists x \in APELLIDOS \land \exists y \in MUSICA \mid apellido(Oscar,x) \land x = Gonzalez \Rightarrow (musica(Oscar, y) \land y = Clasica)$
+\item $\exists x \in APELLIDOS \land \exists y \in MUSICA \mid apellido(Dario,x) \land x = Gonzalez \Rightarrow (musica(Dario, y) \land y = Clasica)$ \\ (Como Juan no puede ser González, solo Oscar y Dario pueden apellidarse González, y si alguno de los dos se apellida González, su música favorita debe ser la clásica)
+\item $\forall y \mid y \in MUSICA$ \\ $musica(Juan,y_{i}) \land musica(Oscar,y_{i+1}) \land musica(Dario,y_{i+2}) \Rightarrow y_{i} \neq y_{i+1} \neq y_{i+2}$ \\ (A cada uno le gusta un estilo musical distinto)
+\item $edad(Oscar, 25)$ \\ (Oscar tiene 25 años)
+\item $\exists x,y \in EDADES \mid$ \\ $ apellido(Oscar, Gonzalez) \Rightarrow edad(Juan,x) \land edad(Oscar,y) \land x > y$ \\ (Si Oscar se apellida Gonzalez, como Juan debe ser mayor que Gonzalez, Juan debería ser mayor que Oscar)
+\item $\exists x,y \in EDADES \mid$ \\ $ apellido(Dario, Gonzalez) \Rightarrow edad(Juan,x) \land edad(Dario,y) \land x > y$ \\ (Si Dario se apellida Gonzalez, como Juan debe ser mayor que Gonzalez, Juan debería ser mayor que Dario)
+\item $musica(Juan, Pop) \Rightarrow \exists x \in APELLIDOS \land \exists y \in EDADES \mid apellido(Juan, x) \land edad(Juan, y) \land x \neq Garcia \land y \neq 24$ \\
+(Si Juan llegase a ser el fan de la música Pop, no puede apellidarse García ni tener 24 años)
+\item $musica(Oscar, Pop) \Rightarrow \exists x \in APELLIDOS \land \exists y \in EDADES \mid apellido(Oscar, x) \land edad(Oscar, y) \land x \neq Garcia \land y \neq 24$ \\
+(Si Oscar llegase a ser el fan de la música Pop, no puede apellidarse García ni tener 24 años)
+\item $musica(Dario, Pop) \Rightarrow \exists x \in APELLIDOS \land \exists y \in EDADES \mid apellido(Dario, x) \land edad(Dario, y) \land x \neq Garcia \land y \neq 24$ \\
+(Si Dario llegase a ser el fan de la música Pop, no puede apellidarse García ni tener 24 años)
 \end{itemize}
 \end{itemize}
 
