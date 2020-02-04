@@ -325,6 +325,7 @@ x_{9,7} \neq x_{9,8} \neq x_{9,9}
 \end{itemize}
 \end{itemize}
 
+\newpage
 
 \begin{flushleft}
 \textbf{3. Secuencia Mágica}
@@ -360,6 +361,63 @@ Donde $x_{i}$ es el i-ésimo elemento de la secuencia mágica.
 \sum_{i=0}^{n-1} x_{i}*(i-1) = 0
 \end{equation*}
 Donde $x_{i}$ es el i-ésimo elemento de la secuencia mágica.
+\end{itemize}
+\end{itemize}
+
+\newpage
+
+\begin{flushleft}
+\textbf{4. Acertijo Lógico}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item \begin{verbatim}
+apellido_juan, apellido_oscar, apellido_dario
+\end{verbatim}
+Son las variables que corresponden a los apellidos de cada persona: Juan, Oscar y Dario. Los posibles valores que pueden tomar dichas variables son los elementos del dominio (tipo enumerado) \begin{verbatim}
+APELLIDOS
+\end{verbatim}
+\item \begin{verbatim}
+musica_juan, musica_oscar, musica_dario
+\end{verbatim}
+Son las variables que corresponden a la musica preferida de cada persona: Juan, Oscar y Dario. Los posibles valores que pueden tomar dichas variables son los elementos del dominio (tipo enumerado) \begin{verbatim}
+MUSICA
+\end{verbatim}
+\item \begin{verbatim}
+edad_juan, edad_oscar, edad_dario
+\end{verbatim}
+Son las variables que corresponden a la edad de cada persona: Juan, Oscar y Dario. Los posibles valores que pueden tomar dichas variables son los elementos del dominio (tipo enumerado) \begin{verbatim}
+EDADES
+\end{verbatim}
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item \begin{verbatim}
+APELLIDOS = {Gonzalez, Garcia, Lopez}
+\end{verbatim}
+Los posibles valores de los apellidos, dados por el enunciado del problema.
+\item \begin{verbatim}
+MUSICA = {Clasica, Pop, Jazz}
+\end{verbatim}
+Los posibles valores de la música preferida, dados por el enunciado del problema.
+\item \begin{verbatim}
+EDADES = 24..26
+\end{verbatim}
+Los posibles valores de las edades, de 24 a 26 años.
+\end{itemize}
+\item Restricciones:
+Antes podríamos considerar los siguientes predicados:
+\begin{enumerate}
+\item $apellido(x,y) = $ La persona $x$ se apellida $y$
+\item $musica(x,y) = $ La música favorita de la persona $x$ es $y$
+\item $edad(x,y) = $ La persona $x$ tiene $y$ años
+\end{enumerate}
+$\rightarrow$ Restricciones:
+\begin{itemize}
+\item $\neg apellido(Juan, Gonzalez)$ \\ (Juan no se apellida González, esto se infiere al decir que Juan es mayor que González)
+\item $\neg apellido(Oscar, Lopez)$ \\ (Oscar no se apellida López)
 \end{itemize}
 \end{itemize}
 
