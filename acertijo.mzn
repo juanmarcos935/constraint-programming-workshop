@@ -44,7 +44,6 @@ constraint (musica_dario == Pop) -> (apellido_dario != Garcia /\ edad_dario != 2
 
 % El fan de la musica Pop no puede apellidarse Garcia y no tiene 24 años
 
-
 solve satisfy;
 
 output ["El apellido de Juan es \(apellido_juan), su musica favorita es \(musica_juan) y su edad es \(edad_juan)\nEl apellido de Oscar es \(apellido_oscar), su musica favorita es \(musica_oscar) y su edad es \(edad_oscar)\nEl apellido de Dario es \(apellido_dario), su musica favorita es \(musica_dario) y su edad es \(edad_dario)"];
