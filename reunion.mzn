@@ -23,12 +23,13 @@ array[DOMINIO1] of var PERSONAS: salida; % Array de variables de decisión sobre
 
 constraint alldifferent(salida); % No debe de haber personas repetidas
 
-constraint forall(i in DOMINIO1) (if salida[i] = entrada[next[1,1]] then if i = 1 then salida[i+1] = entrada[next[1,2]] else if i = 8 then salida[i-1] = entrada[next[1,2]] else salida[i+1] = entrada[next[1,2]] \/ salida[i-1] = entrada[next[1,2]] endif endif endif); % Next particular
+constraint forall(i in DOMINIO1, j in DOMINIO4) (if salida[i] = entrada[next[j,1]] then if i = 1 then salida[i+1] = entrada[next[j,2]] else if i = 8 then salida[i-1] = entrada[next[j,2]] else salida[i+1] = entrada[next[j,2]] \/ salida[i-1] = entrada[next[j,2]] endif endif endif); % Next 
 
-constraint forall(i in DOMINIO1) (if salida[i] = entrada[separate[1,1]] then if i = 1 then salida[i+1] != entrada[separate[1,2]] else if i = 8 then salida[i-1] != entrada[separate[1,2]] else salida[i+1] != entrada[separate[1,2]] \/ salida[i-1] != entrada[separate[1,2]] endif endif endif); % Separate particular
-
+constraint forall(i in DOMINIO1, j in DOMINIO5) (if salida[i] = entrada[separate[j,1]] then if i = 1 then salida[i+1] != entrada[separate[j,2]] else if i = 8 then salida[i-1] != entrada[separate[j,2]] else salida[i+1] != entrada[separate[j,2]] \/ salida[i-1] != entrada[separate[j,2]] endif endif endif); % Separate 
 
 
 
 solve satisfy;
+
+
 
