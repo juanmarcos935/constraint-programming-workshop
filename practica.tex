@@ -18,7 +18,7 @@
 		Escuela de Ingeniería de Sistemas y Computación \\
 		Programación por Restricciones \\
 		Desarrollo: Taller Modelamiento e Implementación CSPs}
-\author{Juan Marcos Caicedo Mej\'ia (1730504-3743)}
+\author{Juan Marcos Caicedo Mejía (1730504-3743)}
 \date{2020}
 \maketitle
 
@@ -435,6 +435,203 @@ $\rightarrow$ Restricciones:
 \end{itemize}
 \end{itemize}
 
+\newpage
 
+\begin{flushleft}
+\textbf{5. Ubicación de personas en una reunión}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item \begin{verbatim}
+n
+\end{verbatim}
+Denota el número $n$ de personas en la reunión
+\item \begin{verbatim}
+cantidad_nexts
+\end{verbatim}
+Denota el número de restricciones de vecindad <<next>>, es decir, cuantas duplas hay en el array de next
+\item \begin{verbatim}
+cantidad_separates
+\end{verbatim}
+Denota el número de restricciones de no vecindad <<separate>>, es decir, cuantas duplas hay en el array de separate
+\item \begin{verbatim}
+cantidad_distancias
+\end{verbatim}
+Denota el número de restricciones de distancia entre personas <<distancia>>, es decir, cuantas tripletas hay en el array de distancia
+\item \begin{verbatim}
+entrada
+\end{verbatim}
+Es el arreglo que contiene las personas que saldrán en la foto. Todos sus elementos deben pertenecer al dominio del conjunto enumerado
+\begin{verbatim}
+PERSONAS
+\end{verbatim}
+\item \begin{verbatim}
+next
+\end{verbatim}
+Es el arreglo que contiene las restricciones de proximidad entre una persona en la foto y otra. (cada dupla significa que una persona debe estar al lado de la otra)
+\item \begin{verbatim}
+separate
+\end{verbatim}
+Es el arreglo que contiene las restricciones de NO proximidad entre una persona en la foto y otra. (cada dupla significa que una persona no puede estar al lado de la otra)
+\item \begin{verbatim}
+distancia
+\end{verbatim}
+Es el arreglo que contiene las restricciones sobre distancia de separación entre una persona u otra. (cada tripleta significa que la primera persona debe estar separada de la otra persona por máximo un determinado número de personas)
+\item \begin{verbatim}
+salida
+\end{verbatim}
+Es el arreglo que contiene las variables de decisión sobre las cuales se aplican las restricciones apropiadas. Sus elementos también pertenecen al conjunto enumerado de
+\begin{verbatim}
+PERSONAS
+\end{verbatim}
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item \begin{verbatim}
+PERSONAS
+\end{verbatim}
+El conjunto de las posibles personas que saldrán en la foto
+\item \begin{verbatim}
+DOMINIO1 = 1..n
+\end{verbatim}
+Dominio de 1 hasta el número $n$ de personas en la foto
+\item \begin{verbatim}
+DOMINIO2 = 1..cantidad_nexts
+\end{verbatim}
+Dominio que es útil para saber cuántas restricciones de next hay
+\item \begin{verbatim}
+DOMINIO3 = 1..cantidad_separates
+\end{verbatim}
+Dominio que es útil para saber cuántas restricciones de separate hay
+\item \begin{verbatim}
+DOMINIO4 = 1..cantidad_distancias
+\end{verbatim}
+Dominio que es útil para saber cuántas restricciones de distancia hay
+\end{itemize}
+\item Restricciones:
+\begin{itemize}
+\item Todas las personas en la fila de la foto deben ser distintas:
+\begin{equation*}
+\forall x \mid x \in PERSONAS \land x_{0}, x_{1}, ..., x_{i-2}, x_{i-1} \in salida
+\end{equation*}
+\begin{equation*}
+x_{0} \neq x_{1} \neq ... \neq x_{i-2} \neq x_{i-1}
+\end{equation*}
+\item Restricciones next:
+\begin{equation*}
+\forall i \in DOMINIO1, j \in DOMINIO2
+\end{equation*}
+\begin{equation*}
+salida(i) = entrada(next(j,1)) \land i = 1 \Rightarrow salida(i+1) = entrada(next(j,2))
+\end{equation*}
+\begin{equation*}
+salida(i) = entrada(next(j,1)) \land i = 8 \Rightarrow salida(i-1) = entrada(next(j,2))
+\end{equation*}
+\begin{equation*}
+salida(i) = entrada(next(j,1)) \land (i \neq 1 \land i \neq 8) \Rightarrow
+\end{equation*}
+\begin{equation*}
+salida(i+1) = entrada(next(j,2)) \lor salida(i-1) = entrada(next(j,2))
+\end{equation*}
+\item Restricciones separate:
+\begin{equation*}
+\forall i \in DOMINIO1, j \in DOMINIO3
+\end{equation*}
+\begin{equation*}
+salida(i) = entrada(separate(j,1)) \land i = 1 \Rightarrow salida(i+1) \neq entrada(separate(j,2))
+\end{equation*}
+\begin{equation*}
+salida(i) = entrada(separate(j,1)) \land i = 8 \Rightarrow salida(i-1) \neq entrada(separate(j,2))
+\end{equation*}
+\begin{equation*}
+salida(i) = entrada(separate(j,1)) \land (i \neq 1 \land i \neq 8) \Rightarrow
+\end{equation*}
+\begin{equation*}
+salida(i+1) \neq entrada(separate(j,2)) \lor salida(i-1) \neq entrada(separate(j,2))
+\end{equation*}
+\item Restricciones distancia:
+\begin{equation*}
+\forall i,k \in DOMINIO1, j \in DOMINIO4
+\end{equation*}
+\begin{equation*}
+salida(i) = entrada(distancia(j,1)) \land salida(k) = entrada(distancia(j,2)) \Rightarrow
+\end{equation*}
+\begin{equation*}
+|i-k| \leq distancia(j,3)+1
+\end{equation*}
+\end{itemize}
+\end{itemize}
+
+\newpage
+
+\begin{flushleft}
+\textbf{6. Construcción de un rectángulo}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item a
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item b
+\end{itemize}
+\item Restricciones:
+\begin{itemize}
+\item c
+\end{itemize}
+\end{itemize}
+
+\newpage
+
+\begin{center}
+\large
+\textbf{PARTE 2 (COPs)}
+\end{center}
+
+\begin{flushleft}
+\textbf{7. Construcción de Transformadores}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item a
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item b
+\end{itemize}
+\item Restricciones:
+\begin{itemize}
+\item c
+\end{itemize}
+\item Función objetivo:
+\end{itemize}
+
+\newpage
+
+\begin{flushleft}
+\textbf{8. Producción de Gasolina}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item a
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item b
+\end{itemize}
+\item Restricciones:
+\begin{itemize}
+\item c
+\end{itemize}
+\item Función objetivo:
+\end{itemize}
 
 \end{document}
