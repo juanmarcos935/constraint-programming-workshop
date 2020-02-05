@@ -27,6 +27,7 @@ constraint forall(i in DOMINIO1, j in DOMINIO4) (if salida[i] = entrada[next[j,1
 
 constraint forall(i in DOMINIO1, j in DOMINIO5) (if salida[i] = entrada[separate[j,1]] then if i = 1 then salida[i+1] != entrada[separate[j,2]] else if i = 8 then salida[i-1] != entrada[separate[j,2]] else salida[i+1] != entrada[separate[j,2]] \/ salida[i-1] != entrada[separate[j,2]] endif endif endif); % Separate 
 
+constraint forall(i,k in DOMINIO1, j in DOMINIO6) (if salida[i] = entrada[distancia[j,1]] /\ salida[k] = entrada[distancia[j,2]] then abs(i-k) <= distancia[j,3]+1 endif);
 
 
 solve satisfy;
