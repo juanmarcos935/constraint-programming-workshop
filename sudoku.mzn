@@ -5,6 +5,16 @@ int: cuadricula = 9; % Variable que determina la dimensión de la cuadrícula gr
 
 array[dimension_cuadricula,dimension_cuadricula] of 0..cuadricula: entrada; % Matriz de entrada, el input del Sudoku, que contiene ya algunos números en algunas celdas (en este caso el número 0 representa vacío, que no tiene número).
 
+entrada = [|0, 9, 0, 0, 0, 0, 0, 1, 0
+           |8, 0, 4, 0, 2, 0, 3, 0, 7
+           |0, 6, 0, 9, 0, 7, 0, 2, 0
+           |0, 0, 5, 0, 3, 0, 1, 0, 0
+           |0, 7, 0, 5, 0, 1, 0, 3, 0
+           |0, 0, 3, 0, 9, 0, 8, 0, 0
+           |0, 2, 0, 8, 0, 5, 0, 6, 0
+           |1, 0, 7, 0, 6, 0, 4, 0, 9
+           |0, 3, 0, 0, 0, 0, 0, 8, 0|];
+
 set of int: dimension_cuadricula = 1..cuadricula; % Dominio de las cuadriculas: numeros del 1 al 9
 
 array[dimension_cuadricula,dimension_cuadricula] of var dimension_cuadricula: salida; % La matriz con la que va a trabajar el programa y aplicar las restricciones, la salida

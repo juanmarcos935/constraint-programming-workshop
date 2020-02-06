@@ -35,11 +35,13 @@ array[dimension_alto, dimension_ancho] of var 0..9: salida_casillas_def; % El ar
 
 constraint forall(i in dimension_alto, j in dimension_ancho) (salida_casillas[i,j] = entrada_casillas[i,j]); % Se llena array de apoyo con los valores iniciales de la entrada
 
-constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_left[i,j] != -1 -> forall(k in dimension_ancho) (salida_casillas[i,k] = 0 -> salida_casillas_def[i,k] in 1..9));
+constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_left[i,j] != -1 -> forall(k in dimension_ancho) (salida_casillas[i,k] = 0 -> salida_casillas_def[i,k] in 1..9)); % Solo rellena las celdas disponibles (sumas izquierdas)
 
-constraint forall(i in dimension_alto) (alldifferent_except_0([salida_casillas_def[i,j] |j in dimension_ancho]));
+constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_up[i,j] != -1 -> forall(k in dimension_alto) (salida_casillas[k,i] = 0 -> salida_casillas_def[k,i] in 1..9)); % Solo rellena las celdas disponibles (sumas arriba)
 
-constraint forall(i in dimension_ancho) (alldifferent_except_0([salida_casillas_def[j,i] |j in dimension_alto]));
+constraint forall(i in dimension_alto) (alldifferent_except_0([salida_casillas_def[i,j] |j in dimension_ancho])); % Filas distintas
+
+constraint forall(i in dimension_ancho) (alldifferent_except_0([salida_casillas_def[j,i] |j in dimension_alto])); % Columnas distintas
 
 
 solve satisfy;
