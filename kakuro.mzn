@@ -37,32 +37,10 @@ constraint forall(i in dimension_alto, j in dimension_ancho) (salida_casillas[i,
 
 constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_left[i,j] != -1 -> forall(k in dimension_ancho) (salida_casillas[i,k] = 0 -> salida_casillas_def[i,k] in 1..9));
 
-array[dimension_ancho] of var 0..9: fila1 = [salida_casillas_def[1,j] | j in dimension_ancho];
-array[dimension_ancho] of var 0..9: fila2 = [salida_casillas_def[2,j] | j in dimension_ancho];
-array[dimension_ancho] of var 0..9: fila3 = [salida_casillas_def[3,j] | j in dimension_ancho];
-array[dimension_ancho] of var 0..9: fila4 = [salida_casillas_def[4,j] | j in dimension_ancho];
-array[dimension_ancho] of var 0..9: fila5 = [salida_casillas_def[5,j] | j in dimension_ancho];
-array[dimension_ancho] of var 0..9: fila6 = [salida_casillas_def[6,j] | j in dimension_ancho];
+constraint forall(i in dimension_alto) (alldifferent_except_0([salida_casillas_def[i,j] |j in dimension_ancho]));
 
-constraint alldifferent_except_0(fila1);
-constraint alldifferent_except_0(fila2);
-constraint alldifferent_except_0(fila3);
-constraint alldifferent_except_0(fila4);
-constraint alldifferent_except_0(fila5);
-constraint alldifferent_except_0(fila6);
+constraint forall(i in dimension_ancho) (alldifferent_except_0([salida_casillas_def[j,i] |j in dimension_alto]));
 
-array[dimension_alto] of var 0..9: columna1 = [salida_casillas_def[j,1] | j in dimension_alto];
-array[dimension_alto] of var 0..9: columna2 = [salida_casillas_def[j,2] | j in dimension_alto];
-array[dimension_alto] of var 0..9: columna3 = [salida_casillas_def[j,3] | j in dimension_alto];
-array[dimension_alto] of var 0..9: columna4 = [salida_casillas_def[j,4] | j in dimension_alto];
-array[dimension_alto] of var 0..9: columna5 = [salida_casillas_def[j,5] | j in dimension_alto];
-
-constraint alldifferent_except_0(columna1);
-constraint alldifferent_except_0(columna2);
-constraint alldifferent_except_0(columna3);
-constraint alldifferent_except_0(columna4);
-constraint alldifferent_except_0(columna5);
 
 solve satisfy;
 
-output ["Solución Kakuro: \n\(fila1)\n\(fila2)\n\(fila3)\n\(fila4)\n\(fila5)\n\(fila6)"];
