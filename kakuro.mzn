@@ -3,6 +3,12 @@ include "globals.mzn";
 int: ancho = 5; % Celdas de ancho del Kakuro
 int: alto = 6; % Celdas de alto del Kakuro
 
+%int: ancho = 8;
+%int: alto = 9;
+
+%int: ancho = 5;
+%int: alto = 5;
+
 
 set of int: dimension_ancho = 1..ancho; % Dimensión de ancho del Kakuro
 set of int: dimension_alto = 1..alto; % Dimensión de alto del Kakuro
@@ -13,6 +19,20 @@ array[dimension_alto, dimension_ancho] of int: entrada_casillas = [|-1,-1,-1,-1,
                                                                    |-1,0,0,-1,-1
                                                                    |-1,-1,0,0,0
                                                                    |-1,-1,0,0,0|];
+%array[dimension_alto, dimension_ancho] of int: entrada_casillas = [|-1,-1,-1,-1,-1,-1,-1,-1
+%                                                                   |-1,-1,-1,0,0,-1,-1,-1
+%                                                                   |-1,-1,-1,0,0,-1,0,0
+%                                                                   |-1,-1,0,0,-1,0,0,0
+%                                                                   |-1,-1,0,0,0,0,-1,-1
+%                                                                   |-1,-1,-1,0,0,0,0,-1
+%                                                                   |-1,0,0,0,-1,0,0,-1
+%                                                                   |-1,0,0,-1,0,0,-1,-1
+%                                                                   |-1,-1,-1,-1,0,0,-1,-1|];
+%array[dimension_alto, dimension_ancho] of int: entrada_casillas = [|-1,-1,-1,-1,-1
+%                                                                   |-1,-1,-1,0,0
+%                                                                   |-1,0,0,0,0
+%                                                                   |-1,0,0,0,0
+%                                                                   |-1,0,0,-1,-1|];
 
 % Dicho Array representa las casillas disponibles para poder colocar los números, denotadas por 0, y las casillas inhabilitadas denotadas por -1
 
@@ -22,7 +42,20 @@ array[dimension_alto, dimension_ancho] of int: entrada_casillas_left = [|-1,-1,-
                                                                         |13,-1,-1,-1,-1
                                                                         |-1,7,-1,-1,-1
                                                                         |-1,19,-1,-1,-1|];
-
+%array[dimension_alto, dimension_ancho] of int: entrada_casillas_left = [|-1,-1,-1,-1,-1,-1,-1,-1
+%                                                                        |-1,-1,12,-1,-1,-1,-1,-1
+%                                                                        |-1,-1,8,-1,-1,8,-1,-1
+%                                                                        |-1,14,-1,-1,12,-1,-1,-1
+%                                                                        |-1,17,-1,-1,-1,-1,-1,-1
+%                                                                        |-1,-1,17,-1,-1,-1,-1,-1
+%                                                                        |21,-1,-1,-1,12,-1,-1,-1
+%                                                                        |5,-1,-1,11,-1,-1,-1,-1
+%                                                                        |-1,-1,-1,5,-1,-1,-1,-1|];
+%array[dimension_alto, dimension_ancho] of int: entrada_casillas_left = [|-1,-1,-1,-1,-1
+%                                                                        |-1,-1,12,-1,-1
+%                                                                        |21,-1,-1,-1,-1
+%                                                                        |16,-1,-1,-1,-1
+%                                                                        |11,-1,-1,-1,-1|];
 % Este array contiene las sumas hacia la izquierda
 
 array[dimension_alto, dimension_ancho] of int: entrada_casillas_up =  [|-1, 9,34, 4,-1
@@ -31,7 +64,20 @@ array[dimension_alto, dimension_ancho] of int: entrada_casillas_up =  [|-1, 9,34
                                                                        |-1,-1,-1,11,3
                                                                        |-1,-1,-1,-1,-1
                                                                        |-1,-1,-1,-1,-1|];                                                                     
-
+%array[dimension_alto, dimension_ancho] of int: entrada_casillas_up = [|-1,-1,-1,26,14,-1,-1,-1
+%                                                                      |-1,-1,-1,-1,-1,-1,6,12
+%                                                                      |-1,-1,6,-1,-1,30,-1,-1
+%                                                                      |-1,-1,-1,-1,14,-1,-1,-1
+%                                                                      |-1,-1,-1,-1,-1,-1,5,-1
+%                                                                      |-1,13,6,-1,-1,-1,-1,-1
+%                                                                      |-1,-1,-1,-1,10,-1,-1,-1
+%                                                                      |-1,-1,-1,-1,-1,-1,-1,-1
+%                                                                      |-1,-1,-1,-1,-1,-1,-1,-1|];
+%array[dimension_alto, dimension_ancho] of int: entrada_casillas_up = [|-1,-1,-1,7,24
+%                                                                      |-1,23,6,-1,-1
+%                                                                      |-1,-1,-1,-1,-1
+%                                                                      |-1,-1,-1,-1,-1
+%                                                                      |-1,-1,-1,-1,-1|];
 % Este array contiene las sumas hacia arriba
 
 array[dimension_alto, dimension_ancho] of var int: salida_casillas; % El array de apoyo
