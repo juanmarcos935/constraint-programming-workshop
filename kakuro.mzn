@@ -1,83 +1,62 @@
 include "globals.mzn";
 
-int: ancho = 5; % Celdas de ancho del Kakuro
-int: alto = 6; % Celdas de alto del Kakuro
+%int: ancho = 5; % Celdas de ancho del Kakuro
+%int: alto = 6; % Celdas de alto del Kakuro
 
-%int: ancho = 8;
-%int: alto = 9;
-
-%int: ancho = 5;
-%int: alto = 5;
+int: ancho = 8;
+int: alto = 8;
 
 
 set of int: dimension_ancho = 1..ancho; % Dimensión de ancho del Kakuro
 set of int: dimension_alto = 1..alto; % Dimensión de alto del Kakuro
 
-array[dimension_alto, dimension_ancho] of int: entrada_casillas = [|-1,-1,-1,-1,-1
-                                                                   |-1,0,0,0,-1
-                                                                   |-1,0,0,0,-1
-                                                                   |-1,0,0,-1,-1
-                                                                   |-1,-1,0,0,0
-                                                                   |-1,-1,0,0,0|];
-%array[dimension_alto, dimension_ancho] of int: entrada_casillas = [|-1,-1,-1,-1,-1,-1,-1,-1
-%                                                                   |-1,-1,-1,0,0,-1,-1,-1
-%                                                                   |-1,-1,-1,0,0,-1,0,0
-%                                                                   |-1,-1,0,0,-1,0,0,0
-%                                                                   |-1,-1,0,0,0,0,-1,-1
-%                                                                   |-1,-1,-1,0,0,0,0,-1
-%                                                                   |-1,0,0,0,-1,0,0,-1
-%                                                                   |-1,0,0,-1,0,0,-1,-1
-%                                                                   |-1,-1,-1,-1,0,0,-1,-1|];
 %array[dimension_alto, dimension_ancho] of int: entrada_casillas = [|-1,-1,-1,-1,-1
-%                                                                   |-1,-1,-1,0,0
-%                                                                   |-1,0,0,0,0
-%                                                                   |-1,0,0,0,0
-%                                                                   |-1,0,0,-1,-1|];
+%                                                                   |-1,0,0,0,-1
+%                                                                   |-1,0,0,0,-1
+%                                                                   |-1,0,0,-1,-1
+%                                                                   |-1,-1,0,0,0
+%                                                                   |-1,-1,0,0,0|];
+array[dimension_alto, dimension_ancho] of int: entrada_casillas = [|-1,-1,-1,-1,-1,-1,-1,-1
+                                                                   |-1,-1,-1,0,0,-1,-1,-1
+                                                                   |-1,-1,-1,0,0,0,-1,-1
+                                                                   |-1,0,0,0,-1,0,0,-1
+                                                                   |-1,0,0,-1,-1,-1,0,0
+                                                                   |-1,-1,0,0,-1,0,0,0
+                                                                   |-1,-1,-1,0,0,0,-1,-1
+                                                                   |-1,-1,-1,-1,0,0,-1,-1|];
 
 % Dicho Array representa las casillas disponibles para poder colocar los números, denotadas por 0, y las casillas inhabilitadas denotadas por -1
 
-array[dimension_alto, dimension_ancho] of int: entrada_casillas_left = [|-1,-1,-1,-1,-1
-                                                                        |9,-1,-1,-1,-1
-                                                                        |13,-1,-1,-1,-1
-                                                                        |13,-1,-1,-1,-1
-                                                                        |-1,7,-1,-1,-1
-                                                                        |-1,19,-1,-1,-1|];
-%array[dimension_alto, dimension_ancho] of int: entrada_casillas_left = [|-1,-1,-1,-1,-1,-1,-1,-1
-%                                                                        |-1,-1,12,-1,-1,-1,-1,-1
-%                                                                        |-1,-1,8,-1,-1,8,-1,-1
-%                                                                        |-1,14,-1,-1,12,-1,-1,-1
-%                                                                        |-1,17,-1,-1,-1,-1,-1,-1
-%                                                                        |-1,-1,17,-1,-1,-1,-1,-1
-%                                                                        |21,-1,-1,-1,12,-1,-1,-1
-%                                                                        |5,-1,-1,11,-1,-1,-1,-1
-%                                                                        |-1,-1,-1,5,-1,-1,-1,-1|];
 %array[dimension_alto, dimension_ancho] of int: entrada_casillas_left = [|-1,-1,-1,-1,-1
-%                                                                        |-1,-1,12,-1,-1
-%                                                                        |21,-1,-1,-1,-1
-%                                                                        |16,-1,-1,-1,-1
-%                                                                        |11,-1,-1,-1,-1|];
+%                                                                        |9,-1,-1,-1,-1
+%                                                                        |13,-1,-1,-1,-1
+%                                                                        |13,-1,-1,-1,-1
+%                                                                        |-1,7,-1,-1,-1
+%                                                                        |-1,19,-1,-1,-1|];
+array[dimension_alto, dimension_ancho] of int: entrada_casillas_left = [|-1,-1,-1,-1,-1,-1,-1,-1
+                                                                        |-1,-1,9,-1,-1,-1,-1,-1
+                                                                        |-1,-1,24,-1,-1,-1,-1,-1
+                                                                        |7,-1,-1,-1,12,-1,-1,-1
+                                                                        |12,-1,-1,-1,-1,10,-1,-1
+                                                                        |-1,14,-1,-1,9,-1,-1,-1
+                                                                        |-1,-1,22,-1,-1,-1,-1,-1
+                                                                        |-1,-1,-1,11,-1,-1,-1,-1|];
 % Este array contiene las sumas hacia la izquierda
 
-array[dimension_alto, dimension_ancho] of int: entrada_casillas_up =  [|-1, 9,34, 4,-1
-                                                                       |-1,-1,-1,-1,-1
-                                                                       |-1,-1,-1,-1,-1
-                                                                       |-1,-1,-1,11,3
-                                                                       |-1,-1,-1,-1,-1
-                                                                       |-1,-1,-1,-1,-1|];                                                                     
-%array[dimension_alto, dimension_ancho] of int: entrada_casillas_up = [|-1,-1,-1,26,14,-1,-1,-1
-%                                                                      |-1,-1,-1,-1,-1,-1,6,12
-%                                                                      |-1,-1,6,-1,-1,30,-1,-1
-%                                                                      |-1,-1,-1,-1,14,-1,-1,-1
-%                                                                      |-1,-1,-1,-1,-1,-1,5,-1
-%                                                                      |-1,13,6,-1,-1,-1,-1,-1
-%                                                                      |-1,-1,-1,-1,10,-1,-1,-1
-%                                                                      |-1,-1,-1,-1,-1,-1,-1,-1
-%                                                                      |-1,-1,-1,-1,-1,-1,-1,-1|];
-%array[dimension_alto, dimension_ancho] of int: entrada_casillas_up = [|-1,-1,-1,7,24
-%                                                                      |-1,23,6,-1,-1
-%                                                                      |-1,-1,-1,-1,-1
-%                                                                      |-1,-1,-1,-1,-1
-%                                                                      |-1,-1,-1,-1,-1|];
+%array[dimension_alto, dimension_ancho] of int: entrada_casillas_up =  [|-1, 9,34, 4,-1
+%                                                                       |-1,-1,-1,-1,-1
+%                                                                       |-1,-1,-1,-1,-1
+%                                                                       |-1,-1,-1,11,3
+%                                                                       |-1,-1,-1,-1,-1
+%                                                                       |-1,-1,-1,-1,-1|];                                                                     
+array[dimension_alto, dimension_ancho] of int: entrada_casillas_up = [|-1,-1,-1,10,15,-1,-1,-1
+                                                                      |-1,-1,-1,-1,-1,13,-1,-1
+                                                                      |-1,7,20,-1,-1,-1,23,-1
+                                                                      |-1,-1,-1,-1,-1,-1,-1,3
+                                                                      |-1,-1,-1,14,-1,8,-1,-1
+                                                                      |-1,-1,-1,-1,17,-1,-1,-1
+                                                                      |-1,-1,-1,-1,-1,-1,-1,-1
+                                                                      |-1,-1,-1,-1,-1,-1,-1,-1|];
 % Este array contiene las sumas hacia arriba
 
 array[dimension_alto, dimension_ancho] of var int: salida_casillas; % El array de apoyo
@@ -89,9 +68,9 @@ constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_l
 
 constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_up[i,j] != -1 -> forall(k in dimension_alto) (salida_casillas[k,i] = 0 -> salida_casillas_def[k,i] in 1..9)); % Solo rellena las celdas disponibles (sumas columnas)
 
-constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_left[i,j] != -1 -> sum([salida_casillas_def[i,k] | k in j+1..(if has_element(-1,[entrada_casillas[i,l] | l in j+1..ancho]) then [m | m in j+1..ancho where entrada_casillas[i,m] == -1][1]-1 else ancho endif)]) = entrada_casillas_left[i,j]); % Gran restricción Filas
+constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_left[i,j] != -1 -> sum([salida_casillas_def[i,k] | k in j+1..(if has_element(-1,[entrada_casillas[i,l] | l in j+1..ancho]) then [m | m in j+1..ancho where entrada_casillas[i,m] = -1][1]-1 else ancho endif)]) = entrada_casillas_left[i,j]);
 
-constraint forall(j in dimension_ancho, i in dimension_alto) (entrada_casillas_up[i,j] != -1 -> sum([salida_casillas_def[k,j] | k in i+1..(if has_element(-1,[entrada_casillas[l,j] | l in i+1..alto]) then [m | m in i+1..alto where entrada_casillas[m,j] == -1][1]-1 else alto endif)]) = entrada_casillas_up[i,j]); % Gran restricción Columnas
+%constraint forall(j in dimension_ancho, i in dimension_alto) (entrada_casillas_up[i,j] != -1 -> sum([salida_casillas_def[k,j] | k in i+1..(if has_element(-1,[entrada_casillas[l,j] | l in i+1..alto]) then [m | m in i+1..alto where entrada_casillas[m,j] = -1][1]-1 else alto endif)]) = entrada_casillas_up[i,j]);
 
 
 constraint forall(i in dimension_alto) (alldifferent_except_0([salida_casillas_def[i,j] |j in dimension_ancho])); % Filas distintas
