@@ -68,14 +68,9 @@ constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_l
 
 constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_up[i,j] != -1 -> forall(k in dimension_alto) (salida_casillas[k,i] = 0 -> salida_casillas_def[k,i] in 1..9)); % Solo rellena las celdas disponibles (sumas columnas)
 
-constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_left[i,j] != -1 -> sum([salida_casillas_def[i,k] | k in j+1..(if has_element(-1,[entrada_casillas[i,l] | l in j+1..ancho]) then [m | m in j+1..ancho where entrada_casillas[i,m] = -1][1]-1 else ancho endif)]) = entrada_casillas_left[i,j]);
+constraint forall(i in dimension_alto, j in dimension_ancho) (entrada_casillas_left[i,j] != -1 -> sum([salida_casillas_def[i,k] | k in j+1..(if has_element(-1,[entrada_casillas[i,l] | l in j+1..ancho]) then [m | m in j+1..ancho where entrada_casillas[i,m] = -1][1]-1 else ancho endif)]) = entrada_casillas_left[i,j] /\ alldifferent([salida_casillas_def[i,k] | k in j+1..(if has_element(-1,[entrada_casillas[i,l] | l in j+1..ancho]) then [m | m in j+1..ancho where entrada_casillas[i,m] = -1][1]-1 else ancho endif)]));
 
-%constraint forall(j in dimension_ancho, i in dimension_alto) (entrada_casillas_up[i,j] != -1 -> sum([salida_casillas_def[k,j] | k in i+1..(if has_element(-1,[entrada_casillas[l,j] | l in i+1..alto]) then [m | m in i+1..alto where entrada_casillas[m,j] = -1][1]-1 else alto endif)]) = entrada_casillas_up[i,j]);
-
-
-constraint forall(i in dimension_alto) (alldifferent_except_0([salida_casillas_def[i,j] |j in dimension_ancho])); % Filas distintas
-
-constraint forall(i in dimension_ancho) (alldifferent_except_0([salida_casillas_def[j,i] |j in dimension_alto])); % Columnas distintas
+constraint forall(j in dimension_ancho, i in dimension_alto) (entrada_casillas_up[i,j] != -1 -> sum([salida_casillas_def[k,j] | k in i+1..(if has_element(-1,[entrada_casillas[l,j] | l in i+1..alto]) then [m | m in i+1..alto where entrada_casillas[m,j] = -1][1]-1 else alto endif)]) = entrada_casillas_up[i,j] /\ alldifferent([salida_casillas_def[k,j] | k in i+1..(if has_element(-1,[entrada_casillas[l,j] | l in i+1..alto]) then [m | m in i+1..alto where entrada_casillas[m,j] = -1][1]-1 else alto endif)]));
 
 
 solve satisfy;
