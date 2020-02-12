@@ -2,8 +2,8 @@ include "globals.mzn";
 int: n = 8; % Numero de personas que saldrán en la foto
 enum PERSONAS = {Jose, Julian, Diana, Juan, David, Claudia, Edgar, Mario}; % Conjunto de las posibles personas que saldrán en la foto
 
-int: cantidad_nexts = 1; % Cantidad de restricciones next
-int: cantidad_separates = 1; % Cantidad de restricciones separate
+int: cantidad_nexts = 3; % Cantidad de restricciones next
+int: cantidad_separates = 2; % Cantidad de restricciones separate
 int: cantidad_distancias = 1; % Cantidad de restricciones distancia
 
 
@@ -14,8 +14,8 @@ set of int: DOMINIO4 = 1..cantidad_distancias; % Dominio para cuantas restriccio
 
 array[DOMINIO1] of PERSONAS: entrada = [Jose, Julian, Diana, Juan, David, Claudia, Edgar, Mario]; % Array que contiene las personas que saldrán en la foto
 
-array[DOMINIO2, 1..2] of int: next = [|5, 8|]; % Input de restricciones next
-array[DOMINIO3, 1..2] of int: separate = [|3, 7|]; % Input de restricciones separate
+array[DOMINIO2, 1..2] of int: next = [|5, 8| 1, 5|7, 2|]; % Input de restricciones next
+array[DOMINIO3, 1..2] of int: separate = [|3, 7| 8, 2|]; % Input de restricciones separate
 array[DOMINIO4, 1..3] of int: distancia = [|6, 5, 2|]; % Input de restricciones distancia
 
 array[DOMINIO1] of var PERSONAS: salida; % Array de variables de decisión sobre el cual se van a trabajar las restricciones

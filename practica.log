@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.28)  5 FEB 2020 11:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.28)  11 FEB 2020 07:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -322,8 +322,8 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
  [2] [3] [4] [5]
-[6] [7] [8] [9] [10]
-Overfull \hbox (4.14195pt too wide) in paragraph at lines 421--422
+[6] [7] [8] [9] [10] [11] [12]
+Overfull \hbox (4.14195pt too wide) in paragraph at lines 476--477
 \OML/cmm/m/it/12 apellido\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Juan; x[]\OT1/cmr/m/
 n/12 ) \OMS/cmsy/m/n/12 ^ \OML/cmm/m/it/12 apellido\OT1/cmr/m/n/12 (\OML/cmm/m/
 it/12 Oscar; x[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^ \OML/cmm/m/it/12 apellido\
@@ -331,12 +331,12 @@ OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Dario; x[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 )
 
  []
 
-[11] [12]
-LaTeX Font Info:    Try loading font information for U+lasy on input line 454.
+[13] [14]
+LaTeX Font Info:    Try loading font information for U+lasy on input line 509.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [13]
-Overfull \hbox (50.8853pt too wide) detected at line 528
+) [15]
+Overfull \hbox (50.8853pt too wide) detected at line 583
 \OML/cmm/m/it/12 salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i\OT1/cmr/m/n/12 ) = \
 OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 next\OT1/cmr/m/n/12 (\
 OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 1)) \OMS/cmsy/m/n/12 ^ \OML/cmm/m/it/12 i \O
@@ -347,7 +347,7 @@ ML/cmm/m/it/12 i \OT1/cmr/m/n/12 + 1) = \OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12
  []
 
 
-Overfull \hbox (51.07986pt too wide) detected at line 531
+Overfull \hbox (51.07986pt too wide) detected at line 586
 \OML/cmm/m/it/12 salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i\OT1/cmr/m/n/12 ) = \
 OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 next\OT1/cmr/m/n/12 (\
 OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 1)) \OMS/cmsy/m/n/12 ^ \OML/cmm/m/it/12 i \O
@@ -358,7 +358,7 @@ rada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 next\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 j;
  []
 
 
-Overfull \hbox (21.7383pt too wide) detected at line 537
+Overfull \hbox (21.7383pt too wide) detected at line 592
 \OML/cmm/m/it/12 salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i \OT1/cmr/m/n/12 + 1)
  = \OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 next\OT1/cmr/m/n/1
 2 (\OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 2)) \OMS/cmsy/m/n/12 _ \OML/cmm/m/it/12 
@@ -368,7 +368,7 @@ salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12
  []
 
 
-Overfull \hbox (93.17378pt too wide) detected at line 544
+Overfull \hbox (93.17378pt too wide) detected at line 599
 \OML/cmm/m/it/12 salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i\OT1/cmr/m/n/12 ) = \
 OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 separate\OT1/cmr/m/n/1
 2 (\OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 1)) \OMS/cmsy/m/n/12 ^ \OML/cmm/m/it/12 
@@ -378,8 +378,8 @@ OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 separate\OT1/cmr/m/n/1
 2 (\OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 2))
  []
 
-[14]
-Overfull \hbox (93.36835pt too wide) detected at line 547
+[16]
+Overfull \hbox (93.36835pt too wide) detected at line 602
 \OML/cmm/m/it/12 salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i\OT1/cmr/m/n/12 ) = \
 OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 separate\OT1/cmr/m/n/1
 2 (\OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 1)) \OMS/cmsy/m/n/12 ^ \OML/cmm/m/it/12 
@@ -390,7 +390,7 @@ arate\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 2))
  []
 
 
-Overfull \hbox (64.02678pt too wide) detected at line 553
+Overfull \hbox (64.02678pt too wide) detected at line 608
 \OML/cmm/m/it/12 salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i \OT1/cmr/m/n/12 + 1)
  \OMS/cmsy/m/n/12 6\OT1/cmr/m/n/12 = \OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\
 OML/cmm/m/it/12 separate\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 2)
@@ -401,7 +401,7 @@ ML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 separate\OT1/cmr/m/n/12
  []
 
 
-Overfull \hbox (59.20905pt too wide) detected at line 560
+Overfull \hbox (59.20905pt too wide) detected at line 615
 \OML/cmm/m/it/12 salida\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i\OT1/cmr/m/n/12 ) = \
 OML/cmm/m/it/12 entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 distancia\OT1/cmr/m/n/
 12 (\OML/cmm/m/it/12 j; \OT1/cmr/m/n/12 1)) \OMS/cmsy/m/n/12 ^ \OML/cmm/m/it/12
@@ -410,7 +410,7 @@ entrada\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 distancia\OT1/cmr/m/n/12 (\OML/cmm/m/i
 t/12 j; \OT1/cmr/m/n/12 2)) \OMS/cmsy/m/n/12 )
  []
 
-[15] [16] [17] [18] (./practica.aux
+[17] [18] [19] (./practica.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
@@ -434,10 +434,10 @@ amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latx
 font/lasy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
 ols/msam10.pfb>
-Output written on practica.pdf (18 pages, 246758 bytes).
+Output written on practica.pdf (19 pages, 248604 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 115 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

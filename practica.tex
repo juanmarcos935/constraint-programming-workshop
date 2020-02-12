@@ -328,6 +328,61 @@ x_{9,7} \neq x_{9,8} \neq x_{9,9}
 \newpage
 
 \begin{flushleft}
+\textbf{2. Kakuro}
+\end{flushleft}
+
+\begin{itemize}
+\item Variables:
+\begin{itemize}
+\item \begin{verbatim}
+ancho
+\end{verbatim}
+Constante entera que se encarga de definir cuál será el ancho (en cuadrículas) del Kakuro.
+\item \begin{verbatim}
+alto
+\end{verbatim}
+Constante entera que se encarga de definir cuál será el alto (en cuadrículas) del Kakuro.
+\item \begin{verbatim}
+entrada_casillas
+\end{verbatim}
+Matriz constante que hace parte del input del Kakuro: esta matriz denota las casillas disponibles para rellenar (casillas blancas) como 0, y las casillas inhabilitadas para rellenar (generalmente las grises o que tienen diagonal) como -1.
+\item \begin{verbatim}
+entrada_casillas_left
+\end{verbatim}
+Matriz constante que hace parte del input del Kakuro: esta matriz denota las sumas horizontales en su respectiva casilla a la que pertenecen en el Kakuro como tal.
+\item \begin{verbatim}
+entrada_casillas_up
+\end{verbatim}
+Matriz constante que hace parte del input del Kakuro: esta matriz denota las sumas verticales en su respectiva casilla a la que pertenecen en el Kakuro como tal.
+\item \begin{verbatim}
+salida_casillas
+\end{verbatim}
+Matriz de variables de decisión que funciona como apoyo: pues sirve para decirle en qué casillas puede poner valores y en qué no, en la matriz en la cual si funcionan las restricciones.
+\item \begin{verbatim}
+salida_casillas_def
+\end{verbatim}
+Matriz de variables de decisión que hace el papel del resultado del Kakuro: sobre esta matriz se imponen las verdaderas restricciones de las reglas del Kakuro.
+\end{itemize}
+\item Dominios:
+\begin{itemize}
+\item \begin{verbatim}
+dimension_ancho = 1..ancho
+\end{verbatim}
+Dominio que denota desde 1 hasta cuánto van las cuadrículas de todo el ancho del Kakuro.
+\item \begin{verbatim}
+dimension_alto = 1..alto
+\end{verbatim}
+Dominio que denota desde 1 hasta cuánto van las cuadrículas de todo el ancho del Kakuro.
+\end{itemize}
+\item Restricciones:
+\begin{itemize}
+\item a
+\end{itemize}
+\end{itemize}
+
+\newpage
+
+\begin{flushleft}
 \textbf{3. Secuencia Mágica}
 \end{flushleft}
 
@@ -561,27 +616,6 @@ salida(i) = entrada(distancia(j,1)) \land salida(k) = entrada(distancia(j,2)) \R
 \begin{equation*}
 |i-k| \leq distancia(j,3)+1
 \end{equation*}
-\end{itemize}
-\end{itemize}
-
-\newpage
-
-\begin{flushleft}
-\textbf{6. Construcción de un rectángulo}
-\end{flushleft}
-
-\begin{itemize}
-\item Variables:
-\begin{itemize}
-\item a
-\end{itemize}
-\item Dominios:
-\begin{itemize}
-\item b
-\end{itemize}
-\item Restricciones:
-\begin{itemize}
-\item c
 \end{itemize}
 \end{itemize}
 
