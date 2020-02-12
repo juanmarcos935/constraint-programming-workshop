@@ -376,7 +376,229 @@ Dominio que denota desde 1 hasta cuánto van las cuadrículas de todo el ancho d
 \end{itemize}
 \item Restricciones:
 \begin{itemize}
-\item a
+\item La primera restricción consiste en rellenar la matriz de apoyo
+\begin{verbatim}
+salida_casillas
+\end{verbatim}
+Con los mismos elementos del array de
+\begin{verbatim}
+entrada_casillas
+\end{verbatim}
+Para poder saber qué casillas tenemos disponibles para rellenar y cuáles no (las inhabilitadas):
+\begin{equation*}
+\forall i \in dimension\_alto, j \in dimension\_ancho \land x \in \{-1, 0\}
+\end{equation*}
+\begin{verbatim}
+entrada_casillas[i,j] = x
+\end{verbatim}
+\begin{equation*}
+\Rightarrow 
+\end{equation*}
+\begin{verbatim}
+salida_casillas[i,j] = x
+\end{verbatim}
+\item La segunda restricción consiste en que, usando la información del segundo array del input
+\begin{verbatim}
+entrada_casillas_left
+\end{verbatim}
+Si llega a encontrarse con un elemento que NO es -1, es decir, que significa que allí hay una suma horizontal, los elementos que se encuentren en la misma fila donde está dicho elemento, y que son 0, es decir, están disponibles para ser rellenados (esta información se consigue a partir de la matriz de apoyo salida\_casillas), entonces en la matriz definitiva de la solución salida\_casillas\_def, dichas celdas de 0 son las que deben se rellenadas con números del 1 al 9.
+\begin{equation*}
+\forall i \in dimension\_alto, j \in dimension\_ancho
+\end{equation*}
+\begin{verbatim}
+entrada_casillas_left[i,j] != -1
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{equation*}
+\forall k \in dimension\_ancho
+\end{equation*}
+\begin{verbatim}
+salida_casillas[i,k] = 0
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{verbatim}
+salida_casillas_def[i,k] 
+\end{verbatim}
+\begin{equation*}
+\in \{1,9\}
+\end{equation*}
+\item La tercer restricción consiste en que, usando la información del tercer array del input
+\begin{verbatim}
+entrada_casillas_up
+\end{verbatim}
+Si llega a encontrarse con un elemento que NO es -1, es decir, que significa que allí hay una suma vertical, los elementos que se encuentren en la misma columna donde está dicho elemento, y que son 0, es decir, están disponibles para ser rellenados (esta información se consigue a partir de la matriz de apoyo salida\_casillas), entonces en la matriz definitiva de la solución salida\_casillas\_def, dichas celdas de 0 son las que deben se rellenadas con números del 1 al 9.
+\begin{equation*}
+\forall j \in dimension\_ancho, i \in dimension\_alto
+\end{equation*}
+\begin{verbatim}
+entrada_casillas_up[i,j] != -1
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{equation*}
+\forall k \in dimension\_alto
+\end{equation*}
+\begin{verbatim}
+salida_casillas[k,i] = 0
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{verbatim}
+salida_casillas_def[k,i] 
+\end{verbatim}
+\begin{equation*}
+\in \{1,9\}
+\end{equation*}
+\item La cuarta restricción es la que hace la magia para que el Kakuro corresponda en sus sumas horizontales: Revisa mediante la función de agregación $forall$ la información del segundo array de input: 
+\begin{verbatim}
+entrada_casillas_left 
+\end{verbatim}
+Buscando, de manera similar a dos for anidados para recorrer una matriz en un lenguaje común, elemento a elemento, un elemento DISTINTO a -1, lo cúal significa que dicho elemento hace referencia a una suma horizontal que debe ser cumplida como restricción. \\ \\ 
+De encontrar un elemento distinto a -1, va a verificar que la suma de los elementos que le siguen inmediatamente después en la fila a la ubicación del elemento que encontró (en el arreglo de output salida\_casillas\_def) sea igual al número que había encontrado que no era -1. 
+\\ \\ 
+Ahora, los Kakuro tienen distintas posibilidades en este momento, y son dos:
+\begin{itemize}
+\item Que dentro de las casillas siguientes al número que se debe rellenar haya una casilla inhabilitada, con lo cual tendrá casillas habilitadas (blancas) para cumplir la suma inmediatamente antes de dicha casilla inhabilitada. 
+\item Que todas las casillas siguientes al número que debe dar la suma horizontal (dicho número se encuentra en una casilla inhabilitada para rellenar) estén habilitadas para rellenar, hasta llegar al ancho del Kakuro, es decir, que entre todas las casillas siguientes al número que se debe rellenar no haya ninguna inhabilitada para rellenar y esto llegue hasta el ancho del Kakuro.
+\end{itemize}
+\newpage
+Lo que sucede en esta restricción es que, revisará que la suma de las casillas siguientes resulte en el número de la suma horizontal a cumplir, pero dependiendo de el caso que se de, revisará dicha suma de números en un rango distinto:
+\begin{itemize}
+\item \textbf{Caso 1: En las casillas siguientes al número que debe sumar, alguna casilla inhabilitada} \\ \\
+Sea $\mathbb{S}$ el conjunto de todas las casillas inmediatamente siguientes a la casilla que contiene la suma horizontal:
+\begin{equation*}
+\mathbb{S} = \{s_0, s_1, s_2, ... , s_{ancho}\}
+\end{equation*}
+Por ejemplo, si el número que debe dar la suma horizontal se encuentra en una posición de columna $j$, es obligatorio que $s_0$ esté en la posición $j+1$.
+\\ \\
+Luego, sea $\mathbb{M}$ un subconjunto de $\mathbb{S}$ tal que
+\begin{equation*}
+m_0, m_1, m_2 ... m_n \in \mathbb{M} \Leftrightarrow m_0 = m_1 = m_2 = ... = m_n
+\end{equation*}
+\begin{equation*}
+\land m_0 = -1 \land m_0, m_1, m_2 ... m_n \in \mathbb{S}
+\end{equation*} 
+Es decir, $\mathbb{M}$ es el subconjunto de los elementos de el conjunto $\mathbb{S}$ tales que sean iguales a -1. Es importante recalcar que de dicho conjunto, $m_0$ es el primer elemento que coincide en ser -1 en $\mathbb{S}$, por ende, es el primer elemento de $\mathbb{M}$.
+\\ \\
+De igual forma, el predicado $posicion(x)$ hace referencia a que, dado un elemento $x$ de una matriz, $posicion(x)$ devuelve la posicion de columna del elemento $x$.
+\begin{equation*}
+\forall i \in dimension\_alto, j \in dimension\_ancho
+\end{equation*}
+\begin{verbatim}
+entrada_casillas_left[i,j] != -1
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{equation*}
+\sum_{j+1}^{posicion(m_0)-1} x_{i} = entrada\_casillas\_left(i,j)
+\end{equation*}
+Dicha sumatoria denota que la sumatoria de todos los elementos siguientes en la fila al número que se encontró que no era -1, hasta una posición anterior al siguiente -1, es decir, la última casilla blanca habilitada para rellenar, todos deben sumar dicho número que fue encontrado que no era -1 (suma horizontal). Además deben ser distintos:
+\begin{equation*}
+\forall x \in \{j+1,posicion(m_0)-1\}
+\end{equation*}
+\begin{equation*}
+x_{j+1} \neq x_{j+2} \neq x_{j+3} \neq ... \neq x_{posicion(m_0)-1}
+\end{equation*}
+\item \textbf{Caso 2: En las casillas siguientes al número que debe sumar, todas habilitadas hasta el ancho del Kakuro}
+\begin{equation*}
+\forall i \in dimension\_alto, j \in dimension\_ancho
+\end{equation*}
+\begin{verbatim}
+entrada_casillas_left[i,j] != -1
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{equation*}
+\sum_{j+1}^{ancho} x_{i} = entrada\_casillas\_left(i,j)
+\end{equation*}
+Dicha sumatoria denota que la sumatoria de todos los elementos siguientes en la fila al número que se encontró que no era -1, hasta una la última casilla habilitada que está ubicada en el ancho del Kakuro, deben sumar el número que se encontró que no era -1. Además deben ser distintos:
+\begin{equation*}
+\forall x \in \{j+1,ancho\}
+\end{equation*}
+\begin{equation*}
+x_{j+1} \neq x_{j+2} \neq x_{j+3} \neq ... \neq x_{ancho}
+\end{equation*}
+\end{itemize}
+\end{itemize}
+\item La quinta restricción es la que hace la magia para que el Kakuro corresponda en sus sumas verticales: Revisa mediante la función de agregación $forall$ la información del tercer array de input: 
+\begin{verbatim}
+entrada_casillas_up 
+\end{verbatim}
+Buscando, de manera similar a dos for anidados para recorrer una matriz en un lenguaje común, elemento a elemento, un elemento DISTINTO a -1, lo cúal significa que dicho elemento hace referencia a una suma vertical que debe ser cumplida como restricción. \\ \\ 
+De encontrar un elemento distinto a -1, va a verificar que la suma de los elementos que le siguen inmediatamente después en la columna a la ubicación del elemento que encontró (en el arreglo de output salida\_casillas\_def) sea igual al número que había encontrado que no era -1. 
+\\ \\ 
+Ahora, los Kakuro tienen distintas posibilidades en este momento, y son dos:
+\begin{itemize}
+\item Que dentro de las casillas siguientes al número que se debe rellenar haya una casilla inhabilitada, con lo cual tendrá casillas habilitadas (blancas) para cumplir la suma inmediatamente antes de dicha casilla inhabilitada. 
+\item Que todas las casillas siguientes al número que debe dar la suma vertical (dicho número se encuentra en una casilla inhabilitada para rellenar) estén habilitadas para rellenar, hasta llegar al alto del Kakuro, es decir, que entre todas las casillas siguientes al número que se debe rellenar no haya ninguna inhabilitada para rellenar y esto llegue hasta el alto del Kakuro.
+\end{itemize}
+\newpage
+Lo que sucede en esta restricción es que, revisará que la suma de las casillas siguientes resulte en el número de la suma vertical a cumplir, pero dependiendo de el caso que se de, revisará dicha suma de números en un rango distinto:
+\begin{itemize}
+\item \textbf{Caso 1: En las casillas siguientes al número que debe sumar, alguna casilla inhabilitada} \\ \\
+Sea $\mathbb{S}$ el conjunto de todas las casillas inmediatamente siguientes a la casilla que contiene la suma vertical:
+\begin{equation*}
+\mathbb{S} = \{s_0, s_1, s_2, ... , s_{alto}\}
+\end{equation*}
+Por ejemplo, si el número que debe dar la suma horizontal se encuentra en una posición de fila $i$, es obligatorio que $s_0$ esté en la posición $i+1$.
+\\ \\
+Luego, sea $\mathbb{M}$ un subconjunto de $\mathbb{S}$ tal que
+\begin{equation*}
+m_0, m_1, m_2 ... m_n \in \mathbb{M} \Leftrightarrow m_0 = m_1 = m_2 = ... = m_n
+\end{equation*}
+\begin{equation*}
+\land m_0 = -1 \land m_0, m_1, m_2 ... m_n \in \mathbb{S}
+\end{equation*} 
+Es decir, $\mathbb{M}$ es el subconjunto de los elementos de el conjunto $\mathbb{S}$ tales que sean iguales a -1. Es importante recalcar que de dicho conjunto, $m_0$ es el primer elemento que coincide en ser -1 en $\mathbb{S}$, por ende, es el primer elemento de $\mathbb{M}$.
+\\ \\
+De igual forma, el predicado $posicion(x)$ hace referencia a que, dado un elemento $x$ de una matriz, $posicion(x)$ devuelve la posicion de fila del elemento $x$.
+\begin{equation*}
+\forall j \in dimension\_ancho, i \in dimension\_alto
+\end{equation*}
+\begin{verbatim}
+entrada_casillas_up[i,j] != -1
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{equation*}
+\sum_{i+1}^{posicion(m_0)-1} x_{i} = entrada\_casillas\_up(i,j)
+\end{equation*}
+Dicha sumatoria denota que la sumatoria de todos los elementos siguientes en la columna al número que se encontró que no era -1, hasta una posición anterior al siguiente -1, es decir, la última casilla blanca habilitada para rellenar, todos deben sumar dicho número que fue encontrado que no era -1 (suma vertical). Además deben ser distintos:
+\begin{equation*}
+\forall x \in \{i+1,posicion(m_0)-1\}
+\end{equation*}
+\begin{equation*}
+x_{i+1} \neq x_{i+2} \neq x_{i+3} \neq ... \neq x_{posicion(m_0)-1}
+\end{equation*}
+\item \textbf{Caso 2: En las casillas siguientes al número que debe sumar, todas habilitadas hasta el alto del Kakuro}
+\begin{equation*}
+\forall j \in dimension\_ancho, i \in dimension\_alto
+\end{equation*}
+\begin{verbatim}
+entrada_casillas_up[i,j] != -1
+\end{verbatim}
+\begin{equation*}
+\Rightarrow
+\end{equation*}
+\begin{equation*}
+\sum_{i+1}^{alto} x_{i} = entrada\_casillas\_up(i,j)
+\end{equation*}
+Dicha sumatoria denota que la sumatoria de todos los elementos siguientes en la columna al número que se encontró que no era -1, hasta una la última casilla habilitada que está ubicada en el ancho del Kakuro, deben sumar el número que se encontró que no era -1. Además deben ser distintos:
+\begin{equation*}
+\forall x \in \{i+1,ancho\}
+\end{equation*}
+\begin{equation*}
+x_{i+1} \neq x_{i+2} \neq x_{i+3} \neq ... \neq x_{ancho}
+\end{equation*}
 \end{itemize}
 \end{itemize}
 
