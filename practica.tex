@@ -852,21 +852,167 @@ salida(i) = entrada(distancia(j,1)) \land salida(k) = entrada(distancia(j,2)) \R
 \textbf{7. Construcción de Transformadores}
 \end{flushleft}
 
+\begin{enumerate}[label=\alph*]
+\item Tabla que representa los datos del problema:
+
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|}
+\hline
+                  & Toneladas de material ferromagnético & Horas de trabajo & Precio Venta \\ \hline
+Transformador \#1 & 2                                                           & 7                                      & 120.000 USD \\ \hline
+Transformador \#2 & 1                                                           & 8                                      & 80.000 USD \\ \hline
+\end{tabular}
+\end{table}
+
+\item Modelo COP para el problema utilizando los valores presentados en la tabla:
+
 \begin{itemize}
-\item Variables:
+\item Variables: 
 \begin{itemize}
-\item a
+\item \begin{verbatim}
+cantidad_toneladas_material_ferromagnetico = 6;
+\end{verbatim}
+Es una constante, corresponde a la cantidad de toneladas de material ferromagnético disponibles, que en el caso del problema, equivale a 6.
+\item \begin{verbatim}
+cantidad_horas_de_trabajo = 28;
+\end{verbatim}
+Es una constante, corresponde a la cantidad de horas de trabajo disponibles, que en el caso del problema, equivale a 28.
+\item \begin{verbatim}
+cantidad_toneladas_t1 = 2;
+\end{verbatim}
+Es una constante, corresponde a la cantidad de toneladas de material ferromagnético que se requieren para fabricar una unidad del Transformador \#1, en el problema equivale a 2.
+\item \begin{verbatim}
+cantidad_toneladas_t2 = 1;
+\end{verbatim}
+Es una constante, corresponde a la cantidad de toneladas de material ferromagnético que se requieren para fabricar una unidad del Transformador \#2, en el problema equivale a 1.
+\item \begin{verbatim}
+cantidad_horas_t1 = 7;
+\end{verbatim}
+Es una constante, corresponde a la cantidad de horas de trabajo que se requieren para fabricar una unidad del Transformador \#1, en el problema equivale a 7.
+\item \begin{verbatim}
+cantidad_horas_t2 = 8;
+\end{verbatim}
+Es una constante, corresponde a la cantidad de horas de trabajo que se requieren para fabricar una unidad del Transformador \#2, en el problema equivale a 8.
+\item \begin{verbatim}
+precio_venta_t1 = 120000;
+\end{verbatim}
+Es una constante, corresponde al precio de venta al público para el Transformador \#1, que en el problema equivale a 120.000
+\item \begin{verbatim}
+precio_venta_t2 = 80000;
+\end{verbatim}
+Es una constante, corresponde al precio de venta al público para el Transformador \#2, que en el problema equivale a 80.000
+\item \begin{verbatim}
+t1
+\end{verbatim}
+Variable de decisión que corresponde a cuántas unidades de Transformador \#1 se fabricarán.
+\item \begin{verbatim}
+t2
+\end{verbatim}
+Variable de decisión que corresponde a cuántas unidades de Transformador \#2 se fabricarán.
+\item \begin{verbatim}
+cantidad_toneladas_material_ferromagnetico_utilizadas = 
+\end{verbatim} 
+\begin{verbatim}
+cantidad_toneladas_t1*t1 + cantidad_toneladas_t2*t2;
+\end{verbatim}
+Variable de decisión que corresponde al número total de toneladas de material ferromagnético utilizadas, según el número de transformadores de cada tipo fabricados.
+\item \begin{verbatim}
+cantidad_horas_de_trabajo_utilizadas = cantidad_horas_t1*t1 
+\end{verbatim}
+\begin{verbatim}
++ cantidad_horas_t2*t2;
+\end{verbatim}
+Variable de decisión que corresponde al número total de horas de trabajo utilizadas, según el número de transformadores de cada tipo fabricados.
 \end{itemize}
-\item Dominios:
+\item Dominio: 
 \begin{itemize}
-\item b
+\item \begin{equation*}
+t_{1}, t_{2} \in \mathbb{Z}^{+} \cup \{0\}
+\end{equation*}
+Dominio para la cantidad de transformadores a fabricar $t_{1}$ y $t_{2}$ (cada uno). La cantidad de transformadores a fabricar debe ser entera y no negativa (incluyendo el cero).
 \end{itemize}
-\item Restricciones:
+\item Restricciones: 
 \begin{itemize}
-\item c
+\item Restricciones de no negatividad:
+\begin{equation*}
+t_{1} \geq 0 \land t_{2} \geq 0
+\end{equation*}
+\item La cantidad de toneladas de material ferromagnético utilizadas no debe superar la cantidad con la que contamos al inicio:
+\begin{equation*}
+cantidad\_toneladas\_material\_ferromagnetico\_utilizadas \leq
+\end{equation*}
+\begin{equation*}
+cantidad\_toneladas\_material\_ferromagnetico
+\end{equation*}
+\item La cantidad de horas de trabajo utilizadas no debe superar la cantidad con la que contamos al inicio:
+\begin{equation*}
+cantidad\_horas\_de\_trabajo\_utilizadas \leq
+\end{equation*}
+\begin{equation*}
+cantidad\_horas\_de\_trabajo
+\end{equation*}
 \end{itemize}
 \item Función objetivo:
+\begin{itemize}
+\item La función objetivo a \textbf{maximizar} es multiplicar el precio de venta el Transformador \#1 por la cantidad de transformadores $t_{1}$ fabricadas, más la multiplicación del precio de venta el Transformador \#2 por la cantidad de transformadores $t_{2}$:
+\begin{equation*}
+f = precio\_venta\_t_{1} * t_{1} + precio\_venta\_t_{2} * t_{2}
+\end{equation*}
 \end{itemize}
+\end{itemize}
+
+\item Presente la implementación del modelo anterior utilizando código MiniZinc: \textbf{se encuentra en el archivo transformadores.mzn}
+
+\item Proponga un modelo COP genérico para $n$ transformadores asumiendo que los valores en la tabla
+pueden cambiar:
+
+\begin{justify}
+$n$ transformadores:
+\end{justify}
+
+\begin{itemize}
+\item \textbf{Entradas}:
+\begin{itemize}
+\item Una lista de tamaño $n$ que denota los precios de cada transformador:
+\begin{equation*}
+<p_{0}, p_{1}, p_{2}, ..., p_{n}>
+\end{equation*}
+Donde $p_{i}$ denota el precio a la venta del público del transformador $i$-ésimo
+\item Una lista de tamaño $n$ que denota la cantidad de toneladas de material ferromagnético necesarias para fabricar cada transformador:
+\begin{equation*}
+<m_{0}, m_{1}, m_{2}, ..., m_{n}>
+\end{equation*}
+Donde $m_{i}$ denota la cantidad de toneladas de material ferromagnético necesario para fabricar el transformador $i$-ésimo
+\item Una lista de tamaño $n$ que denota la cantidad de horas de trabajo necesarias para fabricar cada transformador:
+\begin{equation*}
+<h_{0}, h_{1}, h_{2}, ..., h_{n}>
+\end{equation*}
+Donde $h_{i}$ denota la cantidad de horas de trabajo necesarias para fabricar el transformador $i$-ésimo
+\item Cantidad de toneladas de material ferromagnético inicial disponibles para utilizar $M$
+\item Cantidad de horas de trabajo disponibles para utilizar $H$
+\end{itemize}
+\item \textbf{Salida}:
+\begin{itemize}
+\item Lista de tamaño $n$ cuyos elementos $x_{0}, x_{1}, x_{2}, ..., x_{n} \in \mathbb{Z}^{+} \cup \{0\}$ tal que:
+\begin{equation*}
+\sum_{i=0}^{n} x_{i} * p_{i}
+\end{equation*}
+sea \textbf{máximo} sujeto a
+\begin{equation*}
+\sum_{i=0}^{n} x_{i} * m_{i} \leq M
+\end{equation*}
+\begin{equation*}
+\land
+\end{equation*}
+\begin{equation*}
+\sum_{i=0}^{n} x_{i} * h_{i} \leq H
+\end{equation*}
+\end{itemize}
+\end{itemize}
+
+
+\end{enumerate}
 
 \newpage
 
@@ -874,20 +1020,71 @@ salida(i) = entrada(distancia(j,1)) \land salida(k) = entrada(distancia(j,2)) \R
 \textbf{8. Producción de Gasolina}
 \end{flushleft}
 
+
+\begin{enumerate}[label=\alph*]
+\item Proponga un modelo COP para el problema utilizando los valores presentados en la tabla:
+\begin{justify}
 \begin{itemize}
-\item Variables:
+\item Entradas:
+\\
+\textbf{Butano = 1, Catalítico Reformado = 2, Nafta Pesado = 3}
 \begin{itemize}
-\item a
+\item Lista de tamaño 3 que denota la cantidad de Octano de cada ingrediente:
+\begin{equation*}
+O_{i} = <120,100,74>
+\end{equation*}
+\item Lista de tamaño 3 que denota la cantidad de Valor de presión de cada ingrediente:
+\begin{equation*}
+P_{i} = <60,2.5,4.0>
+\end{equation*}
+\item Lista de tamaño 3 que denota la cantidad de Volatilidad de cada ingrediente:
+\begin{equation*}
+V_{i} = <105,3,12>
+\end{equation*}
+\item Lista de tamaño 3 que denota los costos por galón de cada ingrediente:
+\begin{equation*}
+C_{i} = <0.58,1.55,0.85>
+\end{equation*}
 \end{itemize}
-\item Dominios:
+\item Salida:
 \begin{itemize}
-\item b
+\item Lista de tamaño 3 que denota la cantidad de galones a usar de cada ingrediente:
+\begin{equation*}
+X_{i} = <x_{0}, x_{1}, x_{2}>
+\end{equation*}
+Tal que:
+\begin{equation*}
+\sum_{i = 0}^{2} x_{i} = 12000
+\end{equation*}
+\newpage
+Sujeto a:
+\begin{equation*}
+(\sum_{i = 0}^{2} x_{i} * o_{i}) \div 12000 \geq 89
+\end{equation*}
+\begin{equation*}
+\land
+\end{equation*}
+\begin{equation*}
+(\sum_{i = 0}^{2} x_{i} * p_{i}) \div 12000 \leq 11
+\end{equation*}
+\begin{equation*}
+\land
+\end{equation*}
+\begin{equation*}
+(\sum_{i = 0}^{2} x_{i} * v_{i}) \div 12000 \geq 17
+\end{equation*}
+Donde:
+\begin{equation*}
+\sum_{i = 0}^{2} x_{i} * c_{i}
+\end{equation*}
+Sea \textbf{mínimo}.
 \end{itemize}
-\item Restricciones:
-\begin{itemize}
-\item c
 \end{itemize}
-\item Función objetivo:
-\end{itemize}
+\end{justify}
+\item Presente la implementación del modelo anterior utilizando código MiniZinc:
+\item Proponga un modelo genérico asumiendo que los valores en la tabla pueden cambiar dependiendo del
+proveedor de cada uno de los ingredientes:
+\item Presente la implementación del modelo anterior utilizando código MiniZinc: 
+\end{enumerate}
 
 \end{document}
