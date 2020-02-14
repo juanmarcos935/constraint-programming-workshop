@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.28)  13 FEB 2020 16:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.28)  13 FEB 2020 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -481,7 +481,19 @@ Overfull \hbox (51.52177pt too wide) in paragraph at lines 922--922
 [] 
  []
 
-[26] [27] [28] [29] [30] (./practica.aux
+[26] [27] [28] [29]
+Overfull \hbox (20.23306pt too wide) in paragraph at lines 1084--1085
+\OT1/cmr/m/n/12 Zinc: \OT1/cmr/bx/n/12 se en-cuen-tra en el ar-chi-vo pro-duc-c
+ion[]gasolina[]instancia.mzn 
+ []
+
+
+Overfull \hbox (16.61638pt too wide) in paragraph at lines 1087--1088
+\OT1/cmr/m/n/12 Zinc: \OT1/cmr/bx/n/12 se en-cuen-tra en el ar-chi-vo pro-duc-c
+ion[]gasolina[]generico.mzn 
+ []
+
+[30] (./practica.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
@@ -507,7 +519,7 @@ t12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/las
 y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on practica.pdf (30 pages, 288888 bytes).
+Output written on practica.pdf (30 pages, 289223 bytes).
 PDF statistics:
  158 PDF objects out of 1000 (max. 8388607)
  109 compressed objects within 2 object streams
