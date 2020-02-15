@@ -116,4 +116,4 @@ constraint forall(j in dimension_ancho, i in dimension_alto) (entrada_casillas_u
 
 solve satisfy;
 
-output ["\([salida_casillas_def[i,j] | i in dimension_alto, j in dimension_ancho])"];
+output ["Solución Kakuro: \n"] ++ [show_int(1,salida_casillas_def[i,j]) ++ " " ++ if j == ancho then "\n" else " " endif | i in dimension_alto, j in dimension_ancho];
