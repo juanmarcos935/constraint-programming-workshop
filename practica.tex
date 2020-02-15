@@ -639,6 +639,22 @@ Donde $x_{i}$ es el i-ésimo elemento de la secuencia mágica.
 \end{equation*}
 Donde $x_{i}$ es el i-ésimo elemento de la secuencia mágica.
 \end{itemize}
+\begin{itemize}
+\item La primera restricción redundante se deduce a partir de que cada número en la secuencia cuenta el número de ocurrencias de un número, y que de el número total de ocurrencias en la secuencia debe ser $n$, pues en la secuencia no pueden haber números distintos a los comprendidos entre $0$ y $n-1$. 
+\item La segunda restricción tiene que ver con que, si multiplicamos el índice de cada valor en la secuencia por el valor correspondiente:
+\begin{equation*}
+0 * x_{0} + 1 * x_{1} + ... + (n-1) * x_{n-1}
+\end{equation*}
+Efectivamente esto es igual que simplemente sumarlos:
+\begin{equation*}
+x_{0} + x_{1} + ... + x_{n-1}
+\end{equation*}
+Finalmente:
+\begin{equation*}
+0 * x_{0} + 1 * x_{1} + ... + (n-1) * x_{n-1} = x_{0} + x_{1} + ... + x_{n-1} = n
+\end{equation*}
+Esto debido a que la secuencia es mágica. 
+\end{itemize}
 \end{itemize}
 
 \newpage
@@ -1084,7 +1100,65 @@ Sea \textbf{mínimo}.
 \item Presente la implementación del modelo anterior utilizando código MiniZinc: \textbf{se encuentra en el archivo produccion\_gasolina\_instancia.mzn}
 \item Proponga un modelo genérico asumiendo que los valores en la tabla pueden cambiar dependiendo del
 proveedor de cada uno de los ingredientes:
+\begin{justify}
+\begin{itemize}
+\item Entradas:
+\\
+\textbf{Butano = 0, Catalítico Reformado = 1, Nafta Pesado = 2}
+\begin{itemize}
+\item Lista de tamaño 3 que denota la cantidad de Octano de cada ingrediente:
+\begin{equation*}
+O_{i} = <o_{0},o_{1},o_{2}>
+\end{equation*}
+\item Lista de tamaño 3 que denota la cantidad de Valor de presión de cada ingrediente:
+\begin{equation*}
+P_{i} = <p_{0},p_{1},p_{2}>
+\end{equation*}
+\item Lista de tamaño 3 que denota la cantidad de Volatilidad de cada ingrediente:
+\begin{equation*}
+V_{i} = <v_{0},v_{1},v_{2}>
+\end{equation*}
+\item Lista de tamaño 3 que denota los costos por galón de cada ingrediente:
+\begin{equation*}
+C_{i} = <c_{0},c_{1},c_{2}>
+\end{equation*}
+\end{itemize}
+\item Salida:
+\begin{itemize}
+\item Lista de tamaño 3 que denota la cantidad de galones a usar de cada ingrediente:
+\begin{equation*}
+X_{i} = <x_{0}, x_{1}, x_{2}>
+\end{equation*}
+Tal que:
+\begin{equation*}
+\sum_{i = 0}^{2} x_{i} = 12000
+\end{equation*}
+Sujeto a:
+\begin{equation*}
+(\sum_{i = 0}^{2} x_{i} * o_{i}) \div 12000 \geq 89
+\end{equation*}
+\begin{equation*}
+\land
+\end{equation*}
+\begin{equation*}
+(\sum_{i = 0}^{2} x_{i} * p_{i}) \div 12000 \leq 11
+\end{equation*}
+\begin{equation*}
+\land
+\end{equation*}
+\begin{equation*}
+(\sum_{i = 0}^{2} x_{i} * v_{i}) \div 12000 \geq 17
+\end{equation*}
+Donde:
+\begin{equation*}
+\sum_{i = 0}^{2} x_{i} * c_{i}
+\end{equation*}
+Sea \textbf{mínimo}.
+\end{itemize}
+\end{itemize}
+\end{justify}
 \item Presente la implementación del modelo anterior utilizando código MiniZinc: \textbf{se encuentra en el archivo produccion\_gasolina\_generico.mzn}
+Una instancia con valores distintos a la tablas se encuentra en \textbf{produccion\_gasolina\_generico.dzn}, para ser corrida con el modelo generico
 \end{enumerate}
 
 \end{document}
