@@ -654,9 +654,39 @@ Finalmente:
 \begin{equation*}
 0 * x_{0} + 1 * x_{1} + ... + (n-1) * x_{n-1} = x_{0} + x_{1} + ... + x_{n-1} = n
 \end{equation*}
-Esto debido a que la secuencia es mágica. 
+Esto debido a que la secuencia es mágica. \\
+\\
+También podríamos apoyarnos en la siguiente pequeña demostración:
 \end{itemize}
+\begin{equation*}
+\sum_{i=0}^{n-1} x_{i} = n 
+\end{equation*}
+\begin{equation*}
+x_{0} + x_{1} + ... + x_{n-1} = n 
+\end{equation*}
+\begin{equation*}
+\land
+\end{equation*}
+\begin{equation*}
+\sum_{i=0}^{n-1} x_{i} * i = n 
+\end{equation*}
+\begin{equation*}
+\sum_{i=0}^{n-1} x_{i} * i = \sum_{i=0}^{n-1} x_{i}
+\end{equation*}
+\begin{equation*}
+0 * x_{0} + 1 * x_{1} + ... (n-1) * x_{n-1} = x_{0} + x_{1} + ... + x_{n-1}
+\end{equation*}
+\begin{equation*}
+(0 * x_{0} - x_{0}) + (1 * x_{1} - x_{1}) + ... + ((n-1) * x_{n-1} - x_{n-1}) = 0
+\end{equation*}
+\begin{equation*}
+-1 * x_{0} + 0 * x_{1} + ... + (n-2) * x_{n-1} = 0
+\end{equation*}
+\begin{equation*}
+\sum_{i=0}^{n-1} x_{i} * (i-1) = 0 
+\end{equation*}
 \end{itemize}
+
 
 \newpage
 
@@ -827,7 +857,7 @@ salida(i) = entrada(next(j,1)) \land i = 8 \Rightarrow salida(i-1) = entrada(nex
 salida(i) = entrada(next(j,1)) \land (i \neq 1 \land i \neq 8) \Rightarrow
 \end{equation*}
 \begin{equation*}
-salida(i+1) = entrada(next(j,2)) \lor salida(i-1) = entrada(next(j,2))
+salida(i+1) = entrada(next(j,2)) \oplus salida(i-1) = entrada(next(j,2))
 \end{equation*}
 \item Restricciones separate:
 \begin{equation*}
@@ -843,7 +873,7 @@ salida(i) = entrada(separate(j,1)) \land i = 8 \Rightarrow salida(i-1) \neq entr
 salida(i) = entrada(separate(j,1)) \land (i \neq 1 \land i \neq 8) \Rightarrow
 \end{equation*}
 \begin{equation*}
-salida(i+1) \neq entrada(separate(j,2)) \lor salida(i-1) \neq entrada(separate(j,2))
+salida(i+1) \neq entrada(separate(j,2)) \oplus salida(i-1) \neq entrada(separate(j,2))
 \end{equation*}
 \item Restricciones distancia:
 \begin{equation*}
