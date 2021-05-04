@@ -3,7 +3,7 @@
 <ul>
   <li><h4>Technologies used:</h4>MiniZinc</li>
   <li><h4>Approximate date:</h4>First semester of 2020</li>
-  <li><h4>Purpose:</h4>This repo corresponds to the development of the class workshop (problem set) for the Constraint Programming course at college. It presents MiniZinc solutions to problems like Sudoku, Kakuro, and some other interesting riddles (combinatorial problems). It solves many CSP problems and COP problems too.</li>
+  <li><h4>Purpose:</h4>This repo corresponds to the development of the class workshop (problem set) for the Constraint Programming course at college. It presents MiniZinc solutions to problems like Sudoku, Kakuro, and some other interesting riddles (combinatorial problems). It solves many CSP (Constraint Satisfaction Problems) and COP (Constraint Optimization Problems) too.</li>
   <li><h4>Preview:</h4></li>
 </ul>
 <p align="center">
