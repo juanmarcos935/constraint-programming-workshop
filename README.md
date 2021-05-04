@@ -1,18 +1,17 @@
-<h1>Constraint Programming Workshop (Taller de Programación por Restricciones)</h1>
-<img src="https://i.ibb.co/wRBVY5y/Captura-de-pantalla-de-2020-07-31-22-48-03.png">
-<p><b> English: </b>  </p>
-<p><b> Español: </b>  </p>
+<h1>TL;DR for this repo:</h1>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Racket-logo.svg/512px-Racket-logo.svg.png" height="100" width="100">
 <ul>
-	<li><a href="#1-english">Go to English Documentation</a></li>
-	<li><a href="#2-spanish">Ir a la Documentación en Español</a></li>
+  <li><h4>Technologies used:</h4>MiniZinc</li>
+  <li><h4>Approximate date:</h4>First semester of 2020</li>
+  <li><h4>Purpose:</h4>This repo corresponds to the development of the class workshop (problem set) for the Constraint Programming course at college. It presents MiniZinc solutions to problems like Sudoku, Kakuro, and some other interesting riddles (combinatorial problems). It solves many CSP problems and COP problems too.</li>
+  <li><h4>Preview:</h4></li>
 </ul>
-<h2 id="1-english">English Documentation</h3>
-<h3> What did I learn doing this workshop? </h2>
-<ul>
-	<li>a</li>
-</ul>
-<h2 id="2-spanish">Documentación en Español</h3>
-<h3> ¿Qué aprendí llevando a cabo este taller? </h2>
-<ul>
-	<li>a</li>
-</ul>
+<p align="center">
+    <img src="https://i.ibb.co/zm8XRBy/Screenshot-from-2021-05-04-13-40-57.png">
+</p>
+<p align="center">
+    <img src="https://i.ibb.co/TPqN5bL/Screenshot-from-2021-05-04-13-41-05.png">
+</p>
+<p align="center">
+    <img src="https://i.ibb.co/W2kjTLp/Screenshot-from-2021-05-04-13-41-54.png">
+</p>
